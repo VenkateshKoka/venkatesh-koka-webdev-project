@@ -14,9 +14,20 @@ app.get('/api/recipe/:username/createdRecipes',searchCreatedRecipesForUser);
 app.post('/api/user/:username/cook/recipe/new',createNewRecipe);
 app.get("/api/admin/allrecipes",findallCreatedRecipes);
 app.delete('/api/createdRecipe/delete/:recipeId/by/:username',deleteCreatedRecipe);
+app.get('/api/username/:username/recipe',searchRecipesForUsername);
 
 var recipeModel = require('../models/recipe/recipe.model.server');
 
+
+function searchRecipesForUsername(req,res) {
+    var username = req.params.username;
+    recipeModel
+        .searchRecipesForUsername(username)
+        .then(function (recipes) {
+            res.send(recipes);
+        });
+
+}
 
 function deleteCreatedRecipe(req,res) {
     var recipeId = req.params.recipeId;

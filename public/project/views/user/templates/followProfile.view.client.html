@@ -113,3 +113,30 @@
 
     </ul>
 </div>
+
+<div ng-if="(model.anotheruser.followedBy.indexOf(model.currentUser.username) > -1)"
+     class="content container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item">
+            {{model.anotheruser.firstName}}
+        </li>
+        <li class="list-group-item">
+            {{model.anotheruser.lastName}}
+        </li>
+        <li  class="list-group-item" ng-repeat="recipe in model.recipes">
+            <div   class="row">
+
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <p>
+                        <strong>Recipe Name : </strong>{{recipe.name}}
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <!--{{recipe.cookTime}}-->
+                    <img class="recipeimage" src={{recipe.imageURL}} />
+                </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -22,11 +22,19 @@
             searchCreatedRecipesForUser: searchCreatedRecipesForUser,
             createNewRecipe : createNewRecipe,
             findallCreatedRecipes : findallCreatedRecipes,
-            deleteCreatedRecipe:deleteCreatedRecipe
+            deleteCreatedRecipe:deleteCreatedRecipe,
+            searchRecipesForUsername:searchRecipesForUsername
 
         }
 
         return api;
+
+        function searchRecipesForUsername(username) {
+            var url = '/api/username/'+username+'/recipe';
+            return $http.get(url).then(function (response) {
+                return response.data;
+            })
+        }
 
         function deleteCreatedRecipe(recipeId,username) {
                 var url = '/api/createdRecipe/delete/'+recipeId+'/by/'+username;

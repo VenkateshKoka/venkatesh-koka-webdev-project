@@ -13,6 +13,7 @@
             var isFollowerusername = currentUser.username;
            // var mainId = currentUser._id;
             model.follow = follow;
+            model.renderRecipes = renderRecipes;
             model.logout = logout;
             model.unfollow = unfollow;
             model.renderAnotherUser = renderAnotherUser;
@@ -22,10 +23,21 @@
 
             function init() {
                 renderAnotherUser(secondaryusername);
+                renderRecipes(secondaryusername);
                // isFollower(isFollowerusername,$routeParams['username']);
 
             }
             init();
+
+            function renderRecipes (secondaryusername) {
+                recipeService
+                    .searchRecipesForUsername(secondaryusername)
+                    .then(function (recipes) {
+                        // console.log("model recipe is "+recipe);
+                        model.recipes = recipes;
+                    })
+            }
+
 
             function follow(mainusername,followerusername) {
                 userService.follow(mainusername,followerusername)

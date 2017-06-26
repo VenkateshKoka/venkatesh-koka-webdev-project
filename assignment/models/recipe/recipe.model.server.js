@@ -18,6 +18,7 @@ recipeModel.searchCreatedRecipesForUser = searchCreatedRecipesForUser;
 recipeModel.createNewRecipe = createNewRecipe;
 recipeModel.findallCreatedRecipes = findallCreatedRecipes;
 recipeModel.deleteCreatedRecipe = deleteCreatedRecipe;
+recipeModel.searchRecipesForUsername = searchRecipesForUsername;
 
 
 
@@ -29,6 +30,9 @@ recipeModel.deleteCreatedRecipe = deleteCreatedRecipe;
 module.exports = recipeModel;
 
 
+function searchRecipesForUsername(username) {
+    return recipeModel.find({_createdUser:username});
+}
 
 function deleteCreatedRecipe(recipeId,username) {
     return recipeModel.remove({_id:recipeId});
