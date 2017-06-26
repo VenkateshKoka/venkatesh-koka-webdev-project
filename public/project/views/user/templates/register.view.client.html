@@ -19,7 +19,7 @@
 </nav>
 
 <!--content starts here-->
-<div class="container-fluid">
+<div class=" content container-fluid">
     <h1>Register</h1>
 
     <div ng-show="model.error" class="alert alert-danger">
@@ -32,13 +32,19 @@
            ng-model="username"
            class="form-control"
            placeholder="username"/>
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.usernameerror}}
+    </div>
     <input type="password"
            ng-model="password"
            class="form-control"
            placeholder="password"/>
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.passworderror}}
+    </div>
     <input type="password"
            ng-model="password2"
-           class="form-control"
+           class="form-control form-control-danger"
            placeholder="very password"/>
     <a ng-click="model.register(username, password, password2)" class="btn btn-primary btn-block">
         Register
@@ -49,3 +55,53 @@
     <a class="btn btn-danger  btn-block"
        href="#!/login">Cancel</a>
 </div>
+
+<!--<div class="container-fluid">-->
+    <!--<div class="row" ng-show="model.error">-->
+        <!--<div class="alert alert-danger alert-box" role="alert">-->
+            <!--<b>Error! </b>-->
+            <!--{{model.error}}-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row text-center">-->
+        <!--<h3 class="h3-login-main">Log In</h3>-->
+    <!--</div>-->
+    <!--<form class="form-horizontal">-->
+        <!--<div class="form-group">-->
+            <!--<label>Username</label>-->
+            <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon">-->
+                        <!--<i class="glyphicon glyphicon-user"></i>-->
+                    <!--</span>-->
+                <!--<input type="text"-->
+                       <!--class="form-control"-->
+                       <!--placeholder="Username"-->
+                       <!--ng-model="model.user.username">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label>Password</label>-->
+            <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon">-->
+                        <!--<i class="glyphicon glyphicon-lock"></i>-->
+                    <!--</span>-->
+                <!--<input type="password" class="form-control" placeholder="Password"-->
+                       <!--ng-model="model.user.password">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<a href=""-->
+               <!--class="btn btn-success btn-block"-->
+               <!--ng-click="model.login(model.user)">Sign In</a>-->
+            <!--<a href="/auth/facebook"-->
+               <!--class="btn btn-primary btn-block">-->
+                <!--<span class="fa fa-facebook"></span>-->
+                <!--Facebook-->
+            <!--</a>-->
+        <!--</div>-->
+
+
+
+    <!--</form>-->
+<!--</div>-->
