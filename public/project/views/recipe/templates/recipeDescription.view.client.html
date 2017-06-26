@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <ul class="list-group" >
+
+
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-xs-12 ">
+                    {{model.recipe.name}}
+                </div>
+            </div>
+
+        </li>
+
+        <li class="list-group-item">
+            <button class="btn btn-block btn-primary search-bar-height"
+                    ng-click="model.addRecipeToFavorites(model.recipe)">
+                Add to your favorites
+            </button>
+        </li>
+
+        <li class="list-group-item">
+
+            <div class="row">
+                <div class="col-xs-8">
+                    <img style="width: auto; height: auto" src={{model.recipe.images[0].hostedLargeUrl}} />
+                </div>
+                <div class="col-xs-4">
+                    {{model.recipe.flavors}}
+                </div>
+
+            </div>
+        </li>
+        <li class="list-group-item">
+
+            <div  class="row">
+                <div class="col-xs-12">
+                    {{model.recipe.ingredientLines}}
+
+                </div>
+
+
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <a href="{{model.recipe.source.sourceRecipeUrl}}">
+                    <div class="col-xs-10">
+                        Preparation URL
+                    </div>
+                </a>
+                <div class="col-xs-2 ">
+                    {{model.recipe.totalTime}}
+                </div>
+            </div>
+        </li>
+
+    </ul>
+    </div>
+</div>

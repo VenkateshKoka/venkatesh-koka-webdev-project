@@ -1,0 +1,49 @@
+
+<div class="container-fluid">
+    <h1>Project Home Page</h1>
+    <div class="row">
+        <ul class="list-group">
+            <!--{{mainController.currentUser}}-->
+            <li class="list-group-item"
+                ng-show="!model.currentUser._id">
+                <a href="#!/login">Login</a>
+            </li>
+            <li class="list-group-item" >
+                <a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a>
+            </li>
+            <li class="list-group-item"
+                ng-show="!model.currentUser._id">
+                <a href="#!/register">Register</a>
+            </li>
+            <li ng-show="model.currentUser._id">
+                <a href="#!/profile">Profile</a>
+            </li>
+        </ul>
+    </div>
+    <input ng-model="model.recipe" class="form-control" placeholder="search for recipe">
+    <button class="btn btn-primary btn-block" ng-click="model.searchRecipe(model.recipe)">
+        search
+    </button>
+    <h2>{{ model.name}}</h2>
+
+
+    <ul class="list-group">
+
+        <li  ng-click="model.searchRecipeById(recipe.id)" class="list-group-item" ng-repeat="recipe in model.recipes">
+
+            <div   class="row"> <!--< href="/recipe/{{recipe.id}}" ng-click="model.searchRecipeById(recipe.id)"-->
+                <div class="col-xs-3">
+                    <!--{{recipe.cookTime}}-->
+                        <img src={{recipe.imageUrlsBySize[90]}} />
+                </div>
+                <div class="col-xs-7">
+                    {{recipe.ingredients}}
+                </div>
+                <div class="col-xs-2 ">
+                    {{recipe.recipeName}}
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>
