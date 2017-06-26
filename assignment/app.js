@@ -18,6 +18,7 @@ mongoose.Promise = require('q').Promise;
 require('./services/user.service.server');
 require('./services/recipe.service.server');
 require('./services/comment.service.server');
+require('./services/recipe.service.server');
 // require('./services/project-services/page.service.server');
 // require('./services/project-services/widget.service.server');
 // require('./services/project-services/website.service.server');

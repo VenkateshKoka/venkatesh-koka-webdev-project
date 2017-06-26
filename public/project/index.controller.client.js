@@ -19,7 +19,7 @@
         model.searchRecipe = searchRecipe;
         model.searchRecipeById = searchRecipeById;
         model.findRecipesForUser= findRecipesForUser;
-        model.name ="koka";
+        //model.name ="koka";
 
 
         function init() {
