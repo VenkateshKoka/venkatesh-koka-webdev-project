@@ -8,16 +8,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" href="#">cooK-oka</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse pull-right">
                 <ul class="nav navbar-nav">
-                    <li class="btn btn-basic btn-block active"><a href="#">Home</a></li>
-                    <li class="btn btn-basic btn-block"><a href="#!/admin"> Admin </a></li>
-                    <li class="btn btn-basic btn-block"><a href="#!/profile">Profile</a></li>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li>
+                        <a class="btn btn-basic btn-block" ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a>
+                    </li>
 
+                    <li>
+                        <a class="btn btn-basic btn-block"
+                           href="#!/profile">Profile</a>
+                    </li>
                 </ul>
-            </div>
+            </div><!--/.nav-collapse -->
         </div>
     </nav>
 

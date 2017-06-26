@@ -7,8 +7,10 @@
         .controller('adminUsersController',adminUsersController);
 
 
-    function adminUsersController(userService) {
+    function adminUsersController(userService,currentUser) {
         var model = this;
+
+        model.currentUser = currentUser;
 
         model.deleteUser = deleteUser;
         model.createUser = createUser;

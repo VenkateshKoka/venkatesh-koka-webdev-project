@@ -7,9 +7,11 @@
         .module('pocApp')
         .controller('adminCreatedRecipesController', adminCreatedRecipesController);
 
-    function adminCreatedRecipesController(userService,recipeService) {
+    function adminCreatedRecipesController(userService,recipeService,currentUser) {
 
         var model = this;
+
+        model.currentUser = currentUser;
         
         //model.deleteRecipe = deleteRecipe;
         model.deleteCreatedRecipe = deleteCreatedRecipe;

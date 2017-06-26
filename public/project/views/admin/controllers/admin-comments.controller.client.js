@@ -10,6 +10,8 @@
         function adminCommentsController($routeParams,$location,recipeService,commentService,currentUser) {
             var model = this;
 
+            model.currentUser = currentUser;
+
            // model.findAllComments = findAllComments;
             model.deleteComment = deleteComment;
             model.findAllComments = findAllComments;
