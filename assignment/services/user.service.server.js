@@ -22,9 +22,9 @@ var googleConfig = {
 };
 
 var facebookConfig = {
-    clientID     : '1425528574208033',//process.env.FACEBOOK_CLIENT_ID,
-    clientSecret : '76bf04432777c2953eb9f5a142e07d47',//process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : 'http://localhost:3000/auth/facebook/callback',//process.env.FACEBOOK_CALLBACK_URL
+    clientID     : process.env.FACEBOOK_CLIENT_ID, //'1425528574208033'
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET, //'76bf04432777c2953eb9f5a142e07d47'
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL //'http://localhost:3000/auth/facebook/callback'
 };
 
 
