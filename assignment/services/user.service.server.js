@@ -16,9 +16,9 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 var googleConfig = {
-    clientID     : '564232662124-a2v5bktaih92lt3rntro0k5sdlshul19.apps.googleusercontent.com',//process.env.GOOGLE_CLIENT_ID
-    clientSecret : 'kY052WUnoat2L4CdC_9Kh24K', //process.env.GOOGLE_CLIENT_SECRET
-    callbackURL  : 'http://localhost:3000/auth/google/callback' //process.env.GOOGLE_CALLBACK_URL
+    clientID     : process.env.GOOGLE_CLIENT_ID, // '564232662124-a2v5bktaih92lt3rntro0k5sdlshul19.apps.googleusercontent.com'
+    clientSecret :  process.env.GOOGLE_CLIENT_SECRET, // 'kY052WUnoat2L4CdC_9Kh24K'
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL //'http://localhost:3000/auth/google/callback'
 };
 
 var facebookConfig = {
