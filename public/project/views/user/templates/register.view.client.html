@@ -32,16 +32,16 @@
            ng-model="username"
            class="form-control"
            placeholder="username"/>
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.usernameerror}}
-    </div>
+    <!--<div ng-show="model.error" class="alert alert-danger">-->
+
+
     <input type="password"
            ng-model="password"
            class="form-control"
            placeholder="password"/>
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.passworderror}}
-    </div>
+    <!--<div ng-show="model.error" class="alert alert-danger">-->
+
+
     <input type="password"
            ng-model="password2"
            class="form-control form-control-danger"
@@ -51,6 +51,9 @@
     </a>
     <a ng-click="model.registerAsChef(username, password, password2)" class="btn btn-primary btn-block">
         Register as Chef
+    </a>
+    <a ng-click="model.registerAsAdmin(username, password, password2)" class="btn btn-primary btn-block">
+        Register as Admin
     </a>
     <a class="btn btn-danger  btn-block"
        href="#!/login">Cancel</a>

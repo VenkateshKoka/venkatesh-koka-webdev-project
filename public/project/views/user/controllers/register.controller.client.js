@@ -16,15 +16,16 @@
 
         model.register = register;
         model.registerAsChef = registerAsChef;
+        model.registerAsAdmin = registerAsAdmin;
 
         function register(username, password, password2) {
 
             if(username === null || username === '' || typeof username === 'undefined') {
-                model.usernameerror = 'username is required';
+                model.error = 'username is required';
                 return;
             }
             if(password !== password2 || password === null || typeof password === 'undefined') {
-                model.passworderror = "passwords must match";
+                model.error = "passwords must match";
                 return;
             }
             userService
@@ -64,6 +65,32 @@
                     };
                     return userService
                         .registerAsChef(newUser);
+                })
+                .then(function (user) {
+                    $location.url('/profile' );
+                });
+        }
+        function registerAsAdmin(username, password, password2) {
+
+            if(username === null || username === '' || typeof username === 'undefined') {
+                model.error = 'username is required';
+                return;
+            }
+            if(password !== password2 || password === null || typeof password === 'undefined') {
+                model.error = "passwords must match";
+                return;
+            }
+            userService
+                .findUserByUsername(username)
+                .then(function () {
+                    model.error = "sorry, that username is taken";
+                }, function () {
+                    var newUser = {
+                        username: username,
+                        password: password
+                    };
+                    return userService
+                        .registerAsAdmin(newUser);
                 })
                 .then(function (user) {
                     $location.url('/profile' );

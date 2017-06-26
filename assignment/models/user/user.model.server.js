@@ -12,6 +12,7 @@ var userModel = mongoose.model('ProjectUserModel', userSchema);
 
 userModel.createUser = createUser;
 userModel.createUserAsChef = createUserAsChef;
+userModel.createUserAsAdmin = createUserAsAdmin;
 userModel.findUserById = findUserById;
 userModel.findAllUsers = findAllUsers;
 userModel.findAllUsersToFollow = findAllUsersToFollow;
@@ -233,6 +234,15 @@ function createUserAsChef(user) {
         user.roles = user.roles.split(',');
     } else {
         user.roles = ['USER','CHEF'];
+    }
+    return userModel.create(user);
+}
+
+function createUserAsAdmin(user) {
+    if(user.roles){
+        user.roles = user.roles.split(',');
+    } else {
+        user.roles = ['USER','ADMIN'];
     }
     return userModel.create(user);
 }

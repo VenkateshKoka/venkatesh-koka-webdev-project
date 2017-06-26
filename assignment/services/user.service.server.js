@@ -57,6 +57,7 @@ app.get('/api/project/checkAdmin',checkAdmin);
 app.post  ('/api/project/logout',logout); //check if wam or local
 app.post ('/api/project/register',register);
 app.post ('/api/project/register/chef',registerAsChef);
+app.post ('/api/project/register/admin',registerAsAdmin)
 
 app.post('/api/project/unregister',unregister);
 
@@ -232,6 +233,20 @@ function registerAsChef(req,res) {
             })
         })
 }
+
+function registerAsAdmin(req,res) {
+    var userObj = req.body;
+    userObj.password = bcrypt.hashSync(userObj.password);
+    userModel
+        .createUserAsAdmin(userObj)
+        .then(function (user) {
+            req.login(user,function (status) {
+                res.send(status);
+            })
+        })
+}
+
+
 
 
 

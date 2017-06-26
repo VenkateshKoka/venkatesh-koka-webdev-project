@@ -22,6 +22,7 @@
             createUser: createUser,
             register : register,
             registerAsChef:registerAsChef,
+            registerAsAdmin:registerAsAdmin,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
@@ -114,6 +115,14 @@
 
         function registerAsChef(userObj) {
             var url = "/api/project/register/chef";
+            return $http
+                .post(url,userObj)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+        function registerAsAdmin(userObj) {
+            var url = "/api/project/register/admin";
             return $http
                 .post(url,userObj)
                 .then(function (response) {
