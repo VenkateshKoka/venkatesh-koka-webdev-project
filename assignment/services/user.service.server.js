@@ -12,16 +12,18 @@ passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
 // google strategy
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+// var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// var FacebookStrategy = require('passport-facebook').Strategy;
 
-var googleConfig = {
-    clientID     : '564232662124-a2v5bktaih92lt3rntro0k5sdlshul19.apps.googleusercontent.com',//process.env.GOOGLE_CLIENT_ID
-    clientSecret : 'kY052WUnoat2L4CdC_9Kh24K', //process.env.GOOGLE_CLIENT_SECRET
-    callbackURL  : 'http://localhost:3000/auth/google/callback' //process.env.GOOGLE_CALLBACK_URL
-};
+// var googleConfig = {
+//     clientID     : '564232662124-a2v5bktaih92lt3rntro0k5sdlshul19.apps.googleusercontent.com',//process.env.GOOGLE_CLIENT_ID
+//     clientSecret : 'kY052WUnoat2L4CdC_9Kh24K', //process.env.GOOGLE_CLIENT_SECRET
+//     callbackURL  : 'http://localhost:3000/auth/google/callback' //process.env.GOOGLE_CALLBACK_URL
+// };
 
-passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+
+//passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
 
@@ -47,24 +49,24 @@ app.post ('/api/project/register/chef',registerAsChef);
 app.post('/api/project/unregister',unregister);
 
 //for google auth : endpoint
-app.get('/auth/google',
-    passport.authenticate('google',
-        { scope : ['profile', 'email'] }));
-
-app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        successRedirect: '/project/#!/profile',
-        failureRedirect: '/project/#!/login'
-    }));
-
-app.get ('/auth/facebook',
-    passport.authenticate('facebook', { scope : 'email' }));
-
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/#/user',
-        failureRedirect: '/#/login'
-    }));
+// app.get('/auth/google',
+//     passport.authenticate('google',
+//         { scope : ['profile', 'email'] }));
+//
+// app.get('/auth/google/callback',
+//     passport.authenticate('google', {
+//         successRedirect: '/project/#!/profile',
+//         failureRedirect: '/project/#!/login'
+//     }));
+//
+// app.get ('/auth/facebook',
+//     passport.authenticate('facebook', { scope : 'email' }));
+//
+// app.get('/auth/facebook/callback',
+//     passport.authenticate('facebook', {
+//         successRedirect: '/#/user',
+//         failureRedirect: '/#/login'
+//     }));
 
 
 
