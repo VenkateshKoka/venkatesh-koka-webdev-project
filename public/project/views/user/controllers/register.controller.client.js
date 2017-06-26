@@ -8,13 +8,14 @@
 (function () {
     angular
         .module('pocApp')
-        .controller('registerControllerProject', registerControllerProject);
+        .controller('registerController', registerController);
 
-    function registerControllerProject($location, userServiceProject) {
+    function registerController($location, userService) {
 
         var model = this;
 
         model.register = register;
+        model.registerAsChef = registerAsChef;
 
         function register(username, password, password2) {
 
@@ -22,14 +23,11 @@
                 model.error = 'username is required';
                 return;
             }
-
             if(password !== password2 || password === null || typeof password === 'undefined') {
                 model.error = "passwords must match";
                 return;
             }
-
-            // var found = userService.findUserByUsername(username);
-            userServiceProject
+            userService
                 .findUserByUsername(username)
                 .then(function () {
                     model.error = "sorry, that username is taken";
@@ -38,25 +36,38 @@
                         username: username,
                         password: password
                     };
-                    return userServiceProject
+                    return userService
                         .register(newUser);
                 })
                 .then(function (user) {
                     $location.url('/profile' );
                 });
+        }
+        function registerAsChef(username, password, password2) {
 
-
-
-            // if(found !== null) {
-            //     model.error = "sorry, that username is taken";
-            // } else {
-            //     var newUser = {
-            //         username: username,
-            //         password: password
-            //     };
-            //     newUser = userService.createUser(newUser);
-            //     $location.url('/user/' + newUser._id);
-            // }
+            if(username === null || username === '' || typeof username === 'undefined') {
+                model.error = 'username is required';
+                return;
+            }
+            if(password !== password2 || password === null || typeof password === 'undefined') {
+                model.error = "passwords must match";
+                return;
+            }
+            userService
+                .findUserByUsername(username)
+                .then(function () {
+                    model.error = "sorry, that username is taken";
+                }, function () {
+                    var newUser = {
+                        username: username,
+                        password: password
+                    };
+                    return userService
+                        .registerAsChef(newUser);
+                })
+                .then(function (user) {
+                    $location.url('/profile' );
+                });
         }
     }
 })();

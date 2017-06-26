@@ -1,5 +1,27 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse pull-right">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <!--<li><a href="#!/login">Login</a></li>-->
+                <li><a href="#!/register">Register</a></li>
 
-<div  class="container-fluid" >
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!-- Begin page content -->
+<div  class=" content container-fluid" >
     <h1>Login</h1>
     <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
 
@@ -24,6 +46,11 @@
         <span class="fa fa-google-plus"></span>
         Google
     </a>
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
+
     <a class="btn btn-success btn-block"
        href="#!/register">
         Register

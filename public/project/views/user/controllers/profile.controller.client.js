@@ -4,18 +4,21 @@
 (function () {
     angular
         .module('pocApp')
-        .controller('profileControllerProject', profileControllerProject);
+        .controller('profileController', profileController);
 
-    function profileControllerProject($location, $routeParams,currentUser, userServiceProject) {
+    function profileController($location, $routeParams,currentUser, userService) {
 
         var model = this;
-        console.log("Heyyyyyyyyyy")
+
         // model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
+        model.currentUser = currentUser;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.unregister = unregister;
         model.logout = logout;
+        model.findAllUsersToFollow = findAllUsersToFollow;
+
 
 
         function init() {
@@ -28,8 +31,17 @@
         //     .findUserById(model.userId)
         //     .then(renderUser, userError);
 
+
+
+        function findAllUsersToFollow(username) {
+            userService.findAllUsersToFollow(username)
+                .then(function (users) {
+                     model.users = users;
+            })
+        }
+
         function logout() {
-            userServiceProject
+            userService
                 .logout()
                 .then(function () {
                     $location.url('/login');
@@ -37,15 +49,16 @@
         }
 
         function updateUser(user) {
-            userServiceProject
+            userService
                 .updateUser(user._id, user)
                 .then(function () {
+
                     model.message = "User update successful";
                 });
         }
 
         function unregister() {
-            userServiceProject
+            userService
                 .unregister()
                 .then(function () {
                     $location.url('/');
@@ -55,7 +68,7 @@
         }
 
         function deleteUser() {
-            userServiceProject
+            userService
                 .deleteUser()
                 .then(function () {
                     $location.url('/');
@@ -72,6 +85,8 @@
 
             model.errorinfo = "User not found";
         }
+
+
 
     }
 })();

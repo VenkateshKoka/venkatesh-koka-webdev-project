@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="btn btn-basic btn-block active"><a href="#">Home</a></li>
+                    <li class="btn btn-basic btn-block"><a href="#!/admin"> Admin </a></li>
+                    <li class="btn btn-basic btn-block"><a href="#!/profile">Profile</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+<div class="content container-fluid">
+    <h1>
+        Created recipes
+    </h1>
+    <ul class="list-group">
+        <li  class="list-group-item" ng-repeat="recipe in model.recipes">
+            <div class="row">
+                <div class="col-xs-10">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <p>
+                               <strong>Name :</strong> {{recipe.name}}
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>
+                                <strong>Created By :</strong> {{recipe._createdUser}}
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <img class="recipeimage" src={{recipe.imageURL}} />
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <p>
+                                {{recipe.ingredients}}
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>
+                              <strong>Time Taken: </strong>  {{recipe.totalTimeInSeconds}} secs
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div  class="col-xs-2">
+                    <button ng-click="model.deleteCreatedRecipe(recipe._id,recipe._createdUser)" class="btn-danger">X</button>
+                </div>
+            </div>
+        </li>
+        <!--<a  ng-click="model.deleteComment(model.comment._id)" class="navbar-link">-->
+        <!--<span class="glyphicon glyphicon-remove">-->
+        <!--</span>-->
+        <!--</a>-->
+        <!--ng-show="comment.username === model.currentusername"-->
+    </ul>
+</div>

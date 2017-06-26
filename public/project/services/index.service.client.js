@@ -23,8 +23,8 @@
         // var url2 = "http://api.yummly.com/v1/api/recipes?_app_id=498daef8&_app_key=9efa01f5e7e69933d430ae880d9312fe&q=butter+chicken";
 
         var api = {
-            searchRecipe : searchRecipe,
-            searchRecipeById : searchRecipeById
+            searchRecipe : searchRecipe
+
         };
         return api;
 
@@ -37,14 +37,8 @@
                     return response.data.matches;
                 });
         }
-        function  searchRecipeById(recipeId) {
-            var url = "http://api.yummly.com/v1/api/recipe/"+recipeId+"?_app_id="+app_id+"&_app_key="+app_key;
-            return $http.get(url).then(function (response) {
-                // console.log(response);
-                return response.data;
-            })
 
-        }
+
 
 
 

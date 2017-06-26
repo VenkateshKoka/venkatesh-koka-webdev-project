@@ -7,7 +7,19 @@
         //console.log('hekjflj');
         $routeProvider
             .when('/', {
-                templateUrl: './mainpage.html',
+                templateUrl: './main2.html',
+                controller: 'mainController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkCurrentUser
+                }
+                // resolve :{
+                //     currentUser : checkCurrentUser
+                // }
+            })
+
+            .when('/search/:recipename', {
+                templateUrl: './searchRecipeResults.html',
                 controller: 'pocController',
                 controllerAs: 'model',
                 resolve :{
@@ -18,21 +30,21 @@
                 // }
             })
             .when('/recipe/:recipeId', {
-                templateUrl: './recipeDescription.view.client.html',
+                templateUrl: './views/recipe/templates/recipeDescription.view.client.html',
                 controller: 'recipeController',
-                controllerAs: 'model'
-                // resolve :{
-                //     currentUser : checkCurrentUser
-                // }
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkCurrentUser
+                }
             })
             .when('/login', {
                 templateUrl: './views/user/templates/login.view.client.html',
-                controller: 'loginControllerProject',
+                controller: 'loginController',
                 controllerAs: 'model'
             })
             .when('/profile', {
                 templateUrl: './views/user/templates/profile.view.client.html',
-                controller: 'profileControllerProject',
+                controller: 'profileController',
                 controllerAs: 'model',
                 resolve :{
                     currentUser : checkLoggedIn
@@ -40,14 +52,89 @@
             })
             .when('/register', {
                 templateUrl: './views/user/templates/register.view.client.html',
-                controller: 'registerControllerProject',
+                controller: 'registerController',
                 controllerAs: 'model'
             })
+            .when('/user/recipelist', {
+                templateUrl: './views/recipe/templates/recipelistFavorite.view.client.html',
+                controller: 'favoriteRecipeController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkLoggedIn
+                }
+            })
+            .when('/user/favoriteRecipe/:recipeId', {
+                templateUrl: './views/recipe/templates/recipeFavoriteDescription.view.client.html',
+                controller: 'recipeFavoriteController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkLoggedIn
+                }
+            })
+            .when('/cook/recipe', {
+                templateUrl: './views/recipe/templates/createdRecipesList.view.client.html',
+                controller: 'createdRecipeListController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkLoggedIn
+                }
+            })
+            .when('/cook/recipe/new', {
+                templateUrl: './views/recipe/templates/newRecipe.view.client.html',
+                controller: 'newRecipeController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkLoggedIn
+                }
+            })
+            .when('/user/follow/:username', {
+                templateUrl: './views/user/templates/followProfile.view.client.html',
+                controller: 'followProfileController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkLoggedIn
+                }
+            })
+            .when('/admin', {
+                templateUrl: 'views/admin/templates/admin.view.client.html',
+                // controller: 'profileController',
+                // controllerAs: 'model',
+                resolve :{
+                    currentUser : checkAdmin
+                }
+            })
+            .when('/admin/user', {
+                templateUrl: 'views/admin/templates/admin-users.view.client.html',
+                controller: 'adminUsersController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkAdmin
+                }
+            })
+            .when('/admin/comments', {
+                templateUrl: 'views/admin/templates/admin-comments.view.client.html',
+                controller: 'adminCommentsController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkAdmin
+                }
+            })
+            .when('/admin/createdRecipes', {
+                templateUrl: 'views/admin/templates/admin-createdRecipes.view.client.html',
+                controller: 'adminCreatedRecipesController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkAdmin
+                }
+            })
+
+
+
     }
-    function checkLoggedIn(userServiceProject, $q, $location) {
+    function checkLoggedIn(userService, $q, $location) {
         var deferred = $q.defer();
 
-        userServiceProject
+        userService
             .loggedin()
             .then(function (user) {
                 console.log(user);
@@ -62,10 +149,10 @@
         return deferred.promise;
     }
 
-    function checkAdmin(userServiceProject, $q, $location) {
+    function checkAdmin(userService, $q, $location) {
         var deferred = $q.defer();
 
-        userServiceProject
+        userService
             .checkAdmin()
             .then(function (user) {
                 if(user === '0') {
@@ -79,10 +166,10 @@
         return deferred.promise;
     }
 
-    function checkCurrentUser(userServiceProject, $q, $location) {
+    function checkCurrentUser(userService, $q, $location) {
         var deferred = $q.defer();
 
-        userServiceProject
+        userService
             .loggedin()
             .then(function (user) {
                 if(user === '0') {

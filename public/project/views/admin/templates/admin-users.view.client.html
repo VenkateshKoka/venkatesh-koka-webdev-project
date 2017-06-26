@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="btn btn-basic btn-block active"><a href="#">Home</a></li>
+                    <li class="btn btn-basic btn-block"><a href="#!/admin"> Admin </a></li>
+
+                    <li class="btn btn-basic btn-block"><a href="#!/profile">Profile</a></li>
+                    <!--<li>-->
+                        <!--<a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a>-->
+                    <!--</li>-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+</div>
+<!--content begins here-->
+<div content class="content container-fluid">
+    <h1>Users</h1>
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <div class="row">
+                <div  class="col-xs-2">
+                    Username
+                </div>
+                <div class="col-xs-3">
+                    firstname
+                </div>
+                <div class="col-xs-3">
+                    lastname
+                </div>
+                <div class="col-xs-3">
+                    Role(s)
+                </div>
+                <div class="col-xs-1">
+
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-2">
+                    <input ng-model="model.user.username"
+                           class="form-control"/>
+                </div>
+                <div class="col-xs-3">
+                    <input ng-model="model.user.firstName"
+                           class="form-control"/>
+                </div>
+                <div class="col-xs-3">
+                    <input ng-model="model.user.lastName"
+                           class="form-control"/>
+                </div>
+                <div class="col-xs-2">
+                    <input ng-model="model.user.roles"
+                           class="form-control"/>
+                </div>
+                <div class="col-xs-2">
+                    <span ng-click="model.updateUser(model.user); model.user={}"
+                          class="glyphicon glyphicon-ok pull-left">
+                    </span>
+                    <span ng-click="model.createUser(model.user); model.user={}"
+                          class="glyphicon glyphicon-plus pull-right">
+                    </span>
+                </div>
+            </div>
+        </li>
+        <li ng-repeat="user in model.users" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-2">
+                    {{user.username}}
+                </div>
+                <div class="col-xs-4">
+                    {{user.email}}
+                </div>
+                <div class="col-xs-3">
+                    {{user.roles}}
+                </div>
+                <div class="col-xs-3">
+                    <span ng-click="model.selectUser(user)"
+                          class="glyphicon glyphicon-pencil pull-left">
+                    </span>
+                    <span ng-click="model.deleteUser(user)"
+                          class="glyphicon glyphicon-remove pull-right">
+                    </span>
+                </div>
+            </div>
+         </li>
+    </ul>
+</div>

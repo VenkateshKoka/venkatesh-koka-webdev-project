@@ -10,15 +10,22 @@
         .controller('pocController',pocController);
 
 
-    function pocController($location,userServicep) {
+    function pocController($location,$routeParams,userServicep,currentUser) {
 
         var model = this;
 
+        var recipename = $routeParams['recipename'];
+        model.currentUser = currentUser;
         model.searchRecipe = searchRecipe;
         model.searchRecipeById = searchRecipeById;
+        model.findRecipesForUser= findRecipesForUser;
         model.name ="koka";
 
 
+        function init() {
+            searchRecipe(recipename);
+        }
+        init();
 
         function searchRecipe(recipename) {
             userServicep
@@ -28,11 +35,12 @@
                 })
         }
         function searchRecipeById(recipeid) {
-            userServicep.searchRecipeById(recipeid).then(function (recipe) {
-                console.log(recipe);
-                var recipeId = recipe.id;
-                $location.url('/recipe/'+recipeId);
-            })
+
+                $location.url('/recipe/'+recipeid);
+
+        }
+        function findRecipesForUser() {
+            $location.url('/user/recipes')
         }
 
 

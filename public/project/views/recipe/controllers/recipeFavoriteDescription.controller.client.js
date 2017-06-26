@@ -1,61 +1,44 @@
 /**
- * Created by venkateshkoka on 6/19/17.
+ * Created by venkateshkoka on 6/22/17.
  */
 (function () {
     angular
         .module('pocApp')
-        .controller('recipeController',recipeController);
+        .controller('recipeFavoriteController', recipeFavoriteController);
 
-
-    function recipeController($routeParams,$location,recipeService,commentService,currentUser) { //recipeService,
-
+    function recipeFavoriteController($routeParams,$location,recipeService,commentService,currentUser) {
         var model = this;
         model.currentUserId = currentUser._id;
         model.currentusername = currentUser.username;
-        // console.log(model.currentusername);
         var recipeId = $routeParams['recipeId'];
         var username = currentUser.username;
 
-        model.renderRecipe = renderRecipe;
-        model.addRecipeToFavorites = addRecipeToFavorites;
-        model.createComment = createComment;
-        model.renderComments = renderComments;
-        model.goBack = goBack;
+
+
+        // model.searchFavoriteRecipeById = searchFavoriteRecipeById;
+
+        model.renderFavoriteRecipe = renderFavoriteRecipe;
+          model.createComment = createComment;
+          model.renderComments = renderComments;
         model.deleteComment = deleteComment;
 
-        //console.log(recipeId);
-        // model.name ="koka";
 
         function init() {
-            renderRecipe(recipeId);
+            renderFavoriteRecipe(recipeId);
             renderComments(recipeId);
         }
 
         init();
-        
-        function goBack() {
-            window.history.back();
-        }
 
-        function renderRecipe (recipeId) {
+        function renderFavoriteRecipe (recipeId) {
             recipeService
-                .searchRecipeById(recipeId)
+                .searchFavoriteRecipeById(recipeId)
                 .then(function (recipe) {
-                     console.log("model recipe is "+recipe);
+                    // console.log("model recipe is "+recipe);
                     model.recipe = recipe;
 
 
                 })
-        }
-
-        function addRecipeToFavorites(recipe,userId) {
-            console.log(recipe);
-            recipeService
-                .addRecipeToFavorites(recipe,userId)
-                .then(function (response) {
-                model.message = "successfully added";
-            })
-
         }
 
         function createComment(comment,recipeId) {
@@ -75,23 +58,23 @@
         }
 
         function renderComments(recipeId) {
-            // console.log(recipeId+"the recipe **************");
+            console.log(recipeId+"the recipe **************");
             commentService
                 .findCommentsForRecipe(recipeId)
                 .then(function (comments) {
                     model.comments = comments;
-                })
+            })
         }
-
         function deleteComment(commentId) {
             commentService.deleteComment(commentId,recipeId)
                 .then(function (response) {
                     renderComments(recipeId);
-            })
+                })
         }
 
 
 
 
     }
+
 })();

@@ -1,0 +1,114 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li ><a href="#!/profile">Profile</a></li>
+                    <li>
+                        <a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a>
+                    </li>
+                    <li>
+                    <a class="btn btn-basic btn-block"
+                       href="#!/cook/recipe/new">Create Rceipe</a>
+                    </li>
+                    <!--<li>-->
+                    <!--<a ng-click="model.updateUser(model.user)" class="btn btn-basic btn-block" >-->
+                    <!--Update-->
+                    <!--</a>-->
+                    <!--</li>-->
+
+                    <!--<li>-->
+                    <!--<a ng-click="model.unregister()"-->
+                    <!--class="btn btn-danger btn-block">Unregister</a>-->
+                    <!--</li>-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+</div>
+
+<!--<nav class="navbar navbar-default navbar-fixed-top">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<div class="navbar-text pull-left fix-header-left">-->
+                <!--<a href="#!/profile" class="navbar-link">-->
+          <!--<span class="glyphicon glyphicon-chevron-left">-->
+          <!--</span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="col-xs-6 col-sm-6 text-center">-->
+                <!--<a class="navbar-brand">-->
+                    <!--Recipes-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div class="navbar-text pull-right">&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href="#!/cook/recipe/new" class="navbar-link">&ndash;&gt;-->
+          <!--&lt;!&ndash;<span class="glyphicon glyphicon-plus">&ndash;&gt;-->
+          <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+
+<!--<button ng-click="model.renderCreatedRecipesByUser()">render recipes</button>-->
+<div class="content container-fluid">
+
+    <h1> <strong>Created Recipes</strong> </h1>
+
+    <ul class="list-group">
+        <li class="list-group-item active">
+
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-xs-9">
+                    Name
+                </div>
+                <div class="col-lg-3 visible-lg">
+                    Created
+                </div>
+                <div class="col-md-3 hidden-sm hidden-xs">
+                    Time Taken
+                </div>
+                <div class="col-sm-1 col-xs-3">
+                </div>
+            </div>
+        </li>
+
+        <li class="list-group-item" ng-repeat="recipe in model.recipes">
+
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-xs-9">
+                    <a>{{recipe.name}}</a>
+                </div>
+                <div class="col-lg-3 col-md-2 visible-lg visible-md">
+                    {{recipe.dateCreated | date}}
+                </div>
+                <div class="col-md-3 visible-lg visible-md">
+                    {{recipe.totalTimeInSeconds | date}}
+                </div>
+                <div class="col-sm-1 col-xs-3">
+                    <a href="#!/recipe/edit">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+
+    </ul>
+</div>
+
+
+
+

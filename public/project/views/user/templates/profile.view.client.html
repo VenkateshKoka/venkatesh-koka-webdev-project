@@ -1,25 +1,47 @@
 
 
 <div class="container-fluid">
-<nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="btn btn-basic btn-block active"><a href="#">Home</a></li>
+                    <li>
+                        <a class="btn btn-basic btn-block" ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-basic btn-block"
+                           ng-click="model.logout()">Logout</a>
+                    </li>
+                    <li>
+                        <a ng-click="model.updateUser(model.user)" class="btn btn-basic btn-block" >
+                            Update
+                        </a>
+                    </li>
 
-        <div class="navbar-header">
-            <a class="navbar-brand" >
-                Profile {{model.message}}
-            </a>
-            <p class="navbar-text pull-right">
-                <a ng-href="#!/profile" class="navbar-link">
-          <span class="glyphicon glyphicon-ok">
-          </span>
-                </a>
-            </p>
+                    <li>
+                        <a ng-click="model.unregister()"
+                           class="btn btn-danger btn-block">Unregister</a>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
+    </nav>
 
-</nav>
 </div>
 
 
-<div class="container-fluid">
+<!-- Begin page content -->
+<div class="content container-fluid">
 
     <form>
         <div  ng-show="model.errorinfo" class="alert alert-danger">
@@ -62,29 +84,77 @@
         </div>
     </form>
 
-    <a ng-click="model.updateUser(model.user)"
-       class="btn btn-success btn-block">update</a>
-    <a ng-click="model.unregister()"
-       class="btn btn-danger btn-block">Unregister</a>
-    <a class="btn btn-primary btn-block"
-       href="#!/recipelist">recipelist</a>
-    <a class="btn btn-danger  btn-block"
-       ng-click="model.logout()">Logout</a>
-</div>
+    <a ng-click="model.findAllUsersToFollow(model.currentUser.username)"
+        class="btn btn-primary btn-block">
+        find users
+    </a>
 
-<div class="container-fluid">
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<div class="form-group">
+    <div ng-show="model.users" class="container-fluid">
+        <ul class="list-group">
+            <li     class="list-group-item"
+                    ng-repeat="user in model.users"
+                    ng-hide="'{{model.currentUser.username}}' === '{{user.username}}'">
+                <a href="#!/user/follow/{{user.username}}">
+                    <div >
+                        {{user.username}}
+                    </div>
 
-        <div class="navbar-header">
-            <p class="navbar-text pull-right">
-                <a href="#!/profile" class="navbar-link">
-                    <span class="glyphicon glyphicon-user">
-                    </span>
                 </a>
-            </p>
-        </div>
-
-</nav>
+            </li>
+        </ul>
+    </div>
 </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Followers</strong>
+                    </li>
+                    <li ng-repeat="follower in model.currentUser.followedBy" class="list-group-item">
+                        {{follower}}
+                    </li>
+                </ul>
+                <!--<a ng-click="model.findAllFollowers(model.currentUser.username)"-->
+                   <!--class="btn btn-primary btn-block">-->
+                    <!--find Followers-->
+                <!--</a>-->
+            </div>
+            <div class="col-xs-6">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Follows</strong>
+                    </li>
+                    <li ng-repeat="follow in model.currentUser.follows" class="list-group-item">
+                        {{follow}}
+                    </li>
+                </ul>
+                <!--<a ng-click="model.findAllFollowing(model.currentUser.username)"-->
+                   <!--class="btn btn-primary btn-block">-->
+                    <!--find Following-->
+                <!--</a>-->
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <a ng-href="#!/"
+       class="btn btn-success btn-block">Search recipes</a>
+    <a ng-show="model.currentUser.roles.indexOf('CHEF')>-1" href="#!/cook/recipe"
+       class="btn btn-primary btn-block">Publish recipes</a>
+
+    <!--<a ng-click="model.unregister()"-->
+       <!--class="btn btn-danger btn-block">Unregister</a>-->
+    <a class="btn btn-info btn-block"
+       href="#!/user/recipelist"> Liked recipes</a>
+
+</div>
+
+
 
 

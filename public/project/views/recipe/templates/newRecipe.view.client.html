@@ -1,0 +1,103 @@
+
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#!/cook/recipe">
+                        Back
+                    </a></li>
+                    <li ><a href="#!/profile">Profile</a></li>
+                    <li>
+                        <a ng-click="model.createNewRecipe(recipe)">
+                            Create
+                        </a>
+                    </li>
+                    <!--<li>-->
+                        <!--<a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="btn btn-basic btn-block"-->
+                           <!--href="#!/cook/recipe/new">Create Rceipe</a>-->
+                    <!--</li>-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+</div>
+
+
+<!--<nav class="navbar navbar-default navbar-fixed-top">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<div class="navbar-text pull-left fix-header-left">-->
+                <!--<a ng-href="#!/cook/recipe" class="navbar-link">-->
+          <!--<span class="glyphicon glyphicon-chevron-left">-->
+          <!--</span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="col-xs-6 col-sm-6 text-center">-->
+                <!--<a class="navbar-brand" >-->
+                    <!--New recipe-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="navbar-text pull-right">-->
+                <!--<a ng-click="model.createNewRecipe(recipe)" class="navbar-link">-->
+          <!--<span class="glyphicon glyphicon-ok">-->
+          <!--</span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+
+
+<!--content starts here-->
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <label for="name">Name</label>
+            <input class="form-control"
+                   ng-model="recipe.name"
+                   placeholder="Recipe name"
+                   id="name"/>
+            <label for="preparation"> Preparation Method</label>
+            <textarea class="form-control" ng-model="recipe.ingredients" id="preparation"></textarea>
+            <label for="totalTimeInSeconds">total Time in seconds</label>
+            <input id="totalTimeInSeconds"
+                   placeholder="recipe time"
+                   ng-model="recipe.totalTimeInSeconds"
+                   class="form-control">
+            <button ng-click="model.createNewRecipe(recipe)">
+                Add Recipe
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!--<nav class="navbar navbar-default navbar-fixed-bottom">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<p class="navbar-text pull-right">-->
+                <!--<a ng-href="#!/profile" class="navbar-link">-->
+                    <!--<span class="glyphicon glyphicon-user">-->
+                    <!--</span>-->
+                <!--</a>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+

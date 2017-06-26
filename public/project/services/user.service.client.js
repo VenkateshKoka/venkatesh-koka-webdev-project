@@ -8,9 +8,9 @@
 (function(){
     angular
         .module('pocApp')
-        .factory('userServiceProject', userServiceProject);
+        .factory('userService', userService);
 
-    function userServiceProject($http) {
+    function userService($http) {
         // var users = [
         //     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         //     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -21,6 +21,7 @@
         var api = {
             createUser: createUser,
             register : register,
+            registerAsChef:registerAsChef,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
@@ -31,9 +32,39 @@
             loggedin : loggedin,
             updateUser: updateUser,
             deleteUser:deleteUser,
-            unregister : unregister
+            unregister : unregister,
+            findAllUsersToFollow:findAllUsersToFollow,
+            follow:follow,
+            unfollow:unfollow,
+            findFollowUserByUsername:findFollowUserByUsername,
+            isFollower :isFollower,
+
         };
         return api;
+
+
+
+
+        function follow(mainusername,followerusername) {
+            var url = '/api/follow/'+mainusername+'/by/'+followerusername;
+            return $http.post(url).then(function (response) {
+                return response.data;
+            })
+        }
+
+        function unfollow(mainusername,followerusername) {
+            var url = '/api/unfollow/'+mainusername+'/by/'+followerusername;
+            return $http.post(url).then(function (response) {
+                return response.data;
+            })
+        }
+
+        function isFollower(mainusername,followerusername) {
+            var url = '/api/isFollower/'+mainusername+'/of/'+followerusername;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            })
+        }
 
         function logout() {
             var url = "/api/project/logout";
@@ -59,7 +90,7 @@
             var url = "/api/project/loggedin";
             return $http.get(url)
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
                     return response.data;
                 })
         }
@@ -80,6 +111,16 @@
                     return response.data;
                 })
         }
+
+        function registerAsChef(userObj) {
+            var url = "/api/project/register/chef";
+            return $http
+                .post(url,userObj)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         function unregister(userObj) {
             var url = "/api/project/unregister";
             return $http
@@ -137,6 +178,13 @@
 
         }
 
+        function findFollowUserByUsername(username) {
+            var url = '/api/follow/username/'+username;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            })
+        }
+
         function findUserById(userId) {
 
             var url = "/api/project/user/"+userId;
@@ -169,6 +217,15 @@
             // return null;
         }
 
+        function findAllUsersToFollow(username) {
+            var url = "/api/follow/user/"+username;
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+
+        }
         function findAllUsers() {
             var url = "/api/project/user";
             return $http

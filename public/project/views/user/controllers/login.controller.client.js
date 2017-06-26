@@ -4,9 +4,9 @@
 (function () {
     angular
         .module('pocApp')
-        .controller('loginControllerProject', loginControllerProject);
+        .controller('loginController', loginController);
 
-    function loginControllerProject($location, userServiceProject) {
+    function loginController($location, userService) {
 
         var model = this;
 
@@ -15,7 +15,7 @@
 
         function login(username, password) {
             // var found = userService.findUserByCredentials(username, password);
-            userServiceProject
+            userService
                 .login(username, password) // changed from findUserByCredentials to login
                 .then(loginuser,loginError);
 
@@ -25,13 +25,13 @@
 
                 } else {
                     $location.url('/profile');
-                    console.log("Jhalak");
+                   // console.log("Jhalak");
                     // $location.url('/login');
 
                 }
             }
             function loginError(user) {
-                model.message = "no user exists!!"
+                model.message = "Invalid credentials !!"
 
             }
 

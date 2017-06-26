@@ -1,7 +1,116 @@
-input.form-control {
+input.form-control ,
+textarea.form-control,
+select.form-control{
     margin-bottom: 5px;
 }
 
+textarea {
+    min-height: 5em;
+}
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.navbar{
+    background: lightskyblue;
+
+}
+
+.glyphicon.glyphicon-user.custom{
+    float: right;
+}
+
+nav.navbar.navbar-default.navbar-fixed-top {
+
+
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav.navbar.navbar-default.navbar-fixed-bottom {
+
+
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.fix-header-left{
+    margin-left: -15px;
+    margin-right: 0px;
+}
+.navbar-header{
+    width: 100%;
+}
+nav .row.navbar-text{
+    width: 100%;
+}
+.navbar.navbar-default a{
+    color: white;
+}
+a:hover{
+    text-decoration: none;
+
+}
+.wd-widget {
+    margin-bottom: 10px;
+}
+
+.wd-widget > img {
+    width: 100%;
+}
+
+.wd-widget  .wd-widget-toolbar {
+    position: absolute;
+    right: 15px;
+    background: white;
+    opacity: 0.9;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+}
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.custom-video{
+    top: 0px;
+    right: 0px !important;
+}
+
+.list-group-item .row a{
+    white-space: nowrap;
+
+}
+
+a.navbar-brand{
+    overflow: hidden;
+}
+@media only screen and (max-width: 768px){
+    .container-fluid > .navbar-header{
+        margin-left: 0px;
+    }
+
+}
+@media only screen and (min-width: 768px){
+    .navbar-default .navbar-text {
+        margin-right: 0px;
+    }
+}
+
+.intro-header{
+    margin-top: 50px;
+
 }

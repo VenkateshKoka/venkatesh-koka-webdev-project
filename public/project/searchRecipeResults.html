@@ -1,0 +1,61 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse pull-right">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#!/">Home</a></li>
+                <li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>
+                <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
+                <li ng-show="!model.currentUser._id"><a href="#!/register">Register</a></li>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!--content begins here-->
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-4">
+
+        </div>
+        <div class="col-xs-4">
+            Recipe Name
+        </div>
+        <div class="col-xs-4">
+            Total time
+        </div>
+    </div>
+    <ul class="list-group">
+        <li  ng-click="model.searchRecipeById(recipe.id)" class="list-group-item" ng-repeat="recipe in model.recipes">
+            <div   class="row"> <!--< href="/recipe/{{recipe.id}}" ng-click="model.searchRecipeById(recipe.id)"-->
+                <div class="col-xs-4">
+                    <!--{{recipe.cookTime}}-->
+                    <img src={{recipe.imageUrlsBySize[90]}} />
+                </div>
+                <div class="col-xs-4">
+                    {{recipe.recipeName}}
+
+                    <!--<ul class="list-group">-->
+                        <!--<li class="list-group-item" ng-repeat="line in recipe.ingredients">-->
+                            <!--{{line}}-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                </div>
+                <div class="col-xs-4 ">
+                    <p>{{recipe.totalTimeInSeconds}} secs</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
