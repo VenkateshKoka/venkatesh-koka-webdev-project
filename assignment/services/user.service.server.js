@@ -30,7 +30,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var facebookConfig = {
     clientID     : '1425528574208033',
     clientSecret : '76bf04432777c2953eb9f5a142e07d47',
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback' 
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback'
 };
 
 
