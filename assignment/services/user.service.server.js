@@ -12,14 +12,20 @@ passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
 //google strategy
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+//var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-var googleConfig = {
-    clientID     : process.env.GOOGLE_CLIENT_ID, // '564232662124-a2v5bktaih92lt3rntro0k5sdlshul19.apps.googleusercontent.com'
-    clientSecret :  process.env.GOOGLE_CLIENT_SECRET, // 'kY052WUnoat2L4CdC_9Kh24K'
-    callbackURL  : process.env.GOOGLE_CALLBACK_URL //'http://localhost:3000/auth/google/callback'
-};
+// var googleConfig = {
+//     clientID     : process.env.GOOGLE_CLIENT_ID , // '564232662124-a2v5bktaih92lt3rntro0k5sdlshul19.apps.googleusercontent.com'
+//     clientSecret :  process.env.GOOGLE_CLIENT_SECRET, // ZZ
+//     callbackURL  : process.env.GOOGLE_CALLBACK_URL //'http://localhost:3000/auth/google/callback'
+// };
+
+// var facebookConfig = {
+//     clientID     : '1425528574208033',
+//     clientSecret : '76bf04432777c2953eb9f5a142e07d47',
+//     callbackURL  : 'http://localhost:3000/auth/facebook/callback'
+// };
 
 var facebookConfig = {
     clientID     : process.env.FACEBOOK_CLIENT_ID, //'1425528574208033'
@@ -29,8 +35,7 @@ var facebookConfig = {
 
 
 
-passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
 
 
 
@@ -56,26 +61,27 @@ app.post ('/api/project/register/chef',registerAsChef);
 app.post('/api/project/unregister',unregister);
 
 //for google auth : endpoint
-app.get('/auth/google',
-    passport.authenticate('google',
-        { scope : ['profile', 'email'] }));
+// app.get('/auth/google',
+//     passport.authenticate('google',
+//         { scope : ['profile', 'email'] }));
 
-app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        successRedirect: '/project/#!/profile',
-        failureRedirect: '/project/#!/login'
-    }));
+// app.get('/auth/google/callback',
+//     passport.authenticate('google', {
+//         successRedirect: '/project/#!/profile',
+//         failureRedirect: '/project/#!/login'
+//     }));
 
 app.get ('/auth/facebook',
     passport.authenticate('facebook', { scope : 'email' }));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/#/user',
-        failureRedirect: '/#/login'
+        successRedirect: '/project/#!/profile',
+        failureRedirect: '/project/#!/login'
     }));
 
-
+// passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
 function localStrategy(username, password, done) {
     userModel
@@ -385,75 +391,106 @@ function findAllUsers (req,res) {
 
 };
 
-function googleStrategy(token, refreshToken, profile, done) {
-    userModel
-        .findUserByGoogleId(profile.id)
-        .then(
-            function(user) {
-                if(user) {
-                    return done(null, user);
-                } else {
-                    var email = profile.emails[0].value;
-                    var emailParts = email.split("@");
-                    var newGoogleUser = {
-                        username:  emailParts[0],
-                        firstName: profile.name.givenName,
-                        lastName:  profile.name.familyName,
-                        email:     email,
-                        google: {
-                            id:    profile.id,
-                            token: token
-                        }
-                    };
-                    return userModel.createUser(newGoogleUser);
-                }
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        )
-        .then(
-            function(user){
-                return done(null, user);
-            },
-            function(err){
-                if (err) { return done(err); }
-            }
-        );
-}
+// function googleStrategy(token, refreshToken, profile, done) {
+//     userModel
+//         .findUserByGoogleId(profile.id)
+//         .then(
+//             function(user) {
+//                 if(user) {
+//                     return done(null, user);
+//                 } else {
+//                     var email = profile.emails[0].value;
+//                     var emailParts = email.split("@");
+//                     var newGoogleUser = {
+//                         username:  emailParts[0],
+//                         firstName: profile.name.givenName,
+//                         lastName:  profile.name.familyName,
+//                         email:     email,
+//                         google: {
+//                             id:    profile.id,
+//                             token: token
+//                         }
+//                     };
+//                     return userModel.createUser(newGoogleUser);
+//                 }
+//             },
+//             function(err) {
+//                 if (err) { return done(err); }
+//             }
+//         )
+//         .then(
+//             function(user){
+//                 return done(null, user);
+//             },
+//             function(err){
+//                 if (err) { return done(err); }
+//             }
+//         );
+// }
+
+
+// function facebookStrategy(token, refreshToken, profile, done) {
+//     userModel
+//         .findUserByFacebookId(profile.id)
+//         .then(
+//             function(user) {
+//                 if(user) {
+//                     return done(null, user);
+//                 } else {
+//                     var names = profile.displayName.split(" ");
+//                     var newFacebookUser = {
+//                         username : names[0],
+//                         lastName:  names[1],
+//                         firstName: names[0],
+//                         email:     profile.emails ? profile.emails[0].value:"",
+//                         facebook: {
+//                             id:    profile.id,
+//                             token: token
+//                         }
+//                     };
+//                     return userModel.createUser(newFacebookUser);
+//                 }
+//             },
+//             function(err) {
+//                 if (err) { return done(err); }
+//             }
+//         )
+//         .then(
+//             function(user){
+//                 return done(null, user);
+//             },
+//             function(err){
+//                 if (err) { return done(err); }
+//             }
+//         );
+// }
 
 
 function facebookStrategy(token, refreshToken, profile, done) {
+
     userModel
         .findUserByFacebookId(profile.id)
-        .then(
-            function(user) {
-                if(user) {
-                    return done(null, user);
-                } else {
-                    var names = profile.displayName.split(" ");
-                    var newFacebookUser = {
-                        lastName:  names[1],
-                        firstName: names[0],
-                        email:     profile.emails ? profile.emails[0].value:"",
-                        facebook: {
-                            id:    profile.id,
-                            token: token
-                        }
-                    };
-                    return userModel.createUser(newFacebookUser);
-                }
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        )
-        .then(
-            function(user){
+        .then(function (user) {
+            if (user) {
                 return done(null, user);
-            },
-            function(err){
-                if (err) { return done(err); }
             }
-        );
+            else {
+                var userDetails = {};
+                userDetails.username = profile.displayName.replace(/ /g, '');
+                userDetails.firstName = profile.displayName.split(' ')[0];
+                userDetails.lastName = profile.displayName.split(' ')[1];
+                userDetails.facebook = {id: profile.id, token: token};
+                return userModel.createUser(userDetails);
+            }
+        }, function (err) {
+            return done(err);
+        })
+        .then(function (user) {
+            if (user) {
+                return done(null, user);
+            }
+        }, function (err) {
+            return  done(err);
+        });
+
 }
