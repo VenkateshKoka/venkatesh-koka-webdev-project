@@ -11,13 +11,14 @@
             var model = this;
             model.currentUserId = currentUser._id;
             model.currentusername = currentUser.username;
-            console.log("username is +++++++++++++++"+currentUser.username)
+            // console.log("username is +++++++++++++++"+currentUser.username)
 
 
             // var recipeId = $routeParams['recipeId'];
              var username = currentUser.username;
 
            // model.renderCreatedRecipesByUser = renderCreatedRecipesByUser;
+            model.editCreatedRecipe = editCreatedRecipe;
 
 
             function init() {
@@ -27,6 +28,10 @@
                     })
             }
             init();
+            
+            function editCreatedRecipe(recipeId) {
+                $location.url('/recipe/edit/'+recipeId);
+            }
 
 
         }

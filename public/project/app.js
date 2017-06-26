@@ -37,6 +37,14 @@
                     currentUser : checkCurrentUser
                 }
             })
+            .when('/recipe/edit/:recipeId', {
+                templateUrl: './views/recipe/templates/recipeEdit.view.client.html',
+                controller: 'recipeEditController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkLoggedIn
+                }
+            })
             .when('/login', {
                 templateUrl: './views/user/templates/login.view.client.html',
                 controller: 'loginController',

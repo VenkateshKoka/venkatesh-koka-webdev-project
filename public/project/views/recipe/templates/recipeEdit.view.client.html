@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">cooK-oka</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#!/cook/recipe">
+                        Back
+                    </a></li>
+                    <li ><a href="#!/profile">Profile</a></li>
+                    <!--<li>-->
+                        <!--<a ng-click="model.createNewRecipe(recipe)">-->
+                            <!--Create-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a class="btn btn-basic btn-block"-->
+                    <!--href="#!/cook/recipe/new">Create Rceipe</a>-->
+                    <!--</li>-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+</div>
+
+
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <p>{{model.recipe.name}}</p>
+            <label for="name">Name</label>
+            <input class="form-control"
+                   ng-model="model.recipe.name"
+                   placeholder="Recipe name"
+                   id="name"/>
+            <label for="preparation"> Preparation Method</label>
+            <textarea class="form-control" ng-model="model.recipe.preparation" id="preparation"></textarea>
+            <label for="totalTimeInSeconds">total Time in seconds</label>
+            <input id="totalTimeInSeconds"
+                   placeholder="recipe time"
+                   ng-model="model.recipe.totalTimeInSeconds"
+                   class="form-control">
+            <br>
+            <span class="btn btn-primary btn-block" ng-click="model.updateRecipe(model.recipe._id,model.recipe)">
+                Update
+            </span>
+        </div>
+
+    </div>
+</div>

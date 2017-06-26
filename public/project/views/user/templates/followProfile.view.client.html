@@ -118,10 +118,14 @@
      class="content container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
-            {{model.anotheruser.firstName}}
+           <p>
+               <strong>First Name : </strong>{{model.anotheruser.firstName}}
+           </p>
         </li>
         <li class="list-group-item">
-            {{model.anotheruser.lastName}}
+            <p>
+                <strong>Last Name : </strong>{{model.anotheruser.lastName}}
+            </p>
         </li>
         <li  class="list-group-item" ng-repeat="recipe in model.recipes">
             <div   class="row">

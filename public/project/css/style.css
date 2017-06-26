@@ -94,6 +94,38 @@ a.navbar-brand{
     margin-top: 50px;
 }
 
+input[type="text"] {
+    display: block;
+    margin: 0;
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+
+    -ms-border-radius: none;
+    -o-border-radius: none;
+}
+input[type="text"]:focus {
+    outline: none;
+}
+
+.style-4 {
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
+}
+
+
 @media only screen and (max-width: 768px){
     .container-fluid > .navbar-header{
         margin-left: 0px;

@@ -19,6 +19,8 @@ recipeModel.createNewRecipe = createNewRecipe;
 recipeModel.findallCreatedRecipes = findallCreatedRecipes;
 recipeModel.deleteCreatedRecipe = deleteCreatedRecipe;
 recipeModel.searchRecipesForUsername = searchRecipesForUsername;
+recipeModel.searchCreatedRecipeById = searchCreatedRecipeById;
+recipeModel.updateRecipe = updateRecipe
 
 
 
@@ -29,7 +31,14 @@ recipeModel.searchRecipesForUsername = searchRecipesForUsername;
 
 module.exports = recipeModel;
 
+function updateRecipe(recipeId,recipe) {
+    return recipeModel
+        .update({_id:recipeId},{$set:recipe});
+}
 
+function searchCreatedRecipeById(recipeId) {
+    return recipeModel.findOne({_id:recipeId});
+}
 function searchRecipesForUsername(username) {
     return recipeModel.find({_createdUser:username});
 }

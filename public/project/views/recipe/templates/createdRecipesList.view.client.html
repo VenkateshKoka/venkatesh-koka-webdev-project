@@ -62,49 +62,115 @@
 <!--</nav>-->
 
 <!--<button ng-click="model.renderCreatedRecipesByUser()">render recipes</button>-->
+<!--<div class="content container-fluid">-->
+
+    <!--<h1> <strong>Created Recipes</strong> </h1>-->
+
+    <!--<ul class="list-group">-->
+        <!--<li class="list-group-item active">-->
+
+            <!--<div class="row">-->
+                <!--<div class="col-xs-5">-->
+                    <!--Name-->
+                <!--</div>-->
+                <!--<div class="col-xs-3">-->
+                    <!--Created-->
+                <!--</div>-->
+                <!--<div class="col-xs-3">-->
+                    <!--Time Taken-->
+                <!--</div>-->
+                <!--<div class="col-xs-1">-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</li>-->
+
+        <!--<li class="list-group-item" ng-repeat="recipe in model.recipes">-->
+
+            <!--<div class="row">-->
+                <!--<div class="col-xs-5">-->
+                    <!--<a>{{recipe.name}}</a>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3">-->
+                    <!--{{recipe.dateCreated | date}}-->
+                <!--</div>-->
+                <!--<div class="col-xs-3">-->
+                    <!--{{recipe.totalTimeInSeconds}}-->
+                <!--</div>-->
+                <!--<div class="col-xs-1">-->
+                    <!--&lt;!&ndash;<a href="#!/recipe/edit">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="glyphicon glyphicon-cog pull-right"></span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</li>-->
+
+
+    <!--</ul>-->
+<!--</div>-->
+
 <div class="content container-fluid">
-
-    <h1> <strong>Created Recipes</strong> </h1>
-
+    <h1>
+        Created recipes
+    </h1>
     <ul class="list-group">
-        <li class="list-group-item active">
-
+        <li  class="list-group-item" ng-repeat="recipe in model.recipes">
             <div class="row">
-                <div class="col-xs-5">
-                    Name
+                <div class="col-xs-10">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <p>
+                                <strong>Name :</strong> {{recipe.name}}
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>
+                                <strong>Created On :</strong> {{recipe.dateCreated | date}}
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <img class="recipeimage" src={{recipe.imageURL}} />
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <p>
+                                <strong>Preparation :</strong>{{recipe.preparation}} 
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>
+                                <strong>Time Taken: </strong>  {{recipe.totalTimeInSeconds}} secs
+                            </p>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-xs-3">
-                    Created
-                </div>
-                <div class="col-xs-3">
-                    Time Taken
-                </div>
-                <div class="col-xs-1">
+                <div  class="col-xs-2">
+                    <ul class="list-group">
+                        <div class="row">
+                            <a ng-click="model.deleteCreatedRecipe(recipe._id,recipe._createdUser)" class="navbar-link">
+          <span class="glyphicon glyphicon-remove">
+          </span>
+                            </a>
+                            <!--<button ng-click="model.deleteCreatedRecipe(recipe._id,recipe._createdUser)"-->
+                                    <!--class="btn-danger">X</button>-->
+                        </div>
+                        <div class="row" style="padding-top: 10px">
+                            <a ng-click="model.editCreatedRecipe(recipe._id)" class="navbar-link">
+          <span class="glyphicon glyphicon-cog">
+          </span></a>
+                        </div>
+
+
+
+                    </ul>
                 </div>
             </div>
         </li>
-
-        <li class="list-group-item" ng-repeat="recipe in model.recipes">
-
-            <div class="row">
-                <div class="col-xs-5">
-                    <a>{{recipe.name}}</a>
-                </div>
-                <div class="col-xs-3">
-                    {{recipe.dateCreated | date}}
-                </div>
-                <div class="col-xs-3">
-                    {{recipe.totalTimeInSeconds}}
-                </div>
-                <div class="col-xs-1">
-                    <!--<a href="#!/recipe/edit">-->
-                        <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
-                    <!--</a>-->
-                </div>
-            </div>
-        </li>
-
-
+        <!--<a  ng-click="model.deleteComment(model.comment._id)" class="navbar-link">-->
+        <!--<span class="glyphicon glyphicon-remove">-->
+        <!--</span>-->
+        <!--</a>-->
+        <!--ng-show="comment.username === model.currentusername"-->
     </ul>
 </div>
 

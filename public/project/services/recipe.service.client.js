@@ -23,11 +23,21 @@
             createNewRecipe : createNewRecipe,
             findallCreatedRecipes : findallCreatedRecipes,
             deleteCreatedRecipe:deleteCreatedRecipe,
-            searchRecipesForUsername:searchRecipesForUsername
+            searchRecipesForUsername:searchRecipesForUsername,
+            searchCreatedRecipeById:searchCreatedRecipeById,
+            updateRecipe:updateRecipe
 
         }
 
         return api;
+
+        function updateRecipe(recipeId,recipe) {
+            var url = '/api/update/recipe/'+recipeId;
+            return $http.put(url,recipe)
+                .then(function (response) {
+                    return response.data;
+            })
+        }
 
         function searchRecipesForUsername(username) {
             var url = '/api/username/'+username+'/recipe';
@@ -90,10 +100,16 @@
         function  searchRecipeById(recipeId) {
             var url = "http://api.yummly.com/v1/api/recipe/"+recipeId+"?_app_id="+app_id+"&_app_key="+app_key;
             return $http.get(url).then(function (response) {
-                console.log("in the index.service.client"+response);
+                //console.log("in the index.service.client"+response);
                 return response.data;
             })
 
+        }
+        function searchCreatedRecipeById(recipeId) {
+            var url = '/api/createdRecipe/edit/'+recipeId;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            })
         }
 
         function searchFavoriteRecipeById(recipeId) {
