@@ -9,12 +9,14 @@
         .module('pocApp')
         .controller('mainController', mainController);
 
-    function mainController($location,$routeParams,currentUser) {
+    function mainController($location,$routeParams,userService,currentUser) {
         var model = this;
 
         model.searchrecipe =  searchrecipe;
 
         model.currentUser = currentUser;
+       // model.logout = logout;
+
 
 
         $('#myCarousel').carousel({
@@ -25,6 +27,14 @@
         function searchrecipe(recipename) {
             $location.url('/search/'+recipename);
         }
+
+        // function logout() {
+        //     userService
+        //         .logout()
+        //         .then(function () {
+        //             $location.url('/');
+        //         })
+        // }
 
     }
 })();

@@ -25,36 +25,72 @@
     <div ng-show="model.error" class="alert alert-danger">
         {{model.error}}
     </div>
-
+    <form name="form" class="css-form" novalidate>
     <label for="username">Username</label>
     <input type="text"
            id="username"
            ng-model="username"
+           required=""
+           name="username"
            class="form-control"
            placeholder="username"/>
+        <div ng-show="form.$submitted">
+            <div class="inputerror" ng-show="form.username.$error.required">please enter username</div>
+        </div>
+
     <!--<div ng-show="model.error" class="alert alert-danger">-->
 
-
+    <label for="password">password</label>
     <input type="password"
+           id = "password"
            ng-model="password"
+           required=""
+           name="password"
            class="form-control"
            placeholder="password"/>
+        <div ng-show="form.$submitted">
+            <div class="inputerror" ng-show="form.password.$error.required">please enter password</div>
+        </div>
     <!--<div ng-show="model.error" class="alert alert-danger">-->
 
-
+    <label for="password2">Re-enter password</label>
     <input type="password"
+           id="password2"
            ng-model="password2"
+           required=""
+           name="password2"
            class="form-control form-control-danger"
            placeholder="very password"/>
-    <a ng-click="model.register(username, password, password2)" class="btn btn-primary btn-block">
-        Register
-    </a>
-    <a ng-click="model.registerAsChef(username, password, password2)" class="btn btn-primary btn-block">
-        Register as Chef
-    </a>
-    <a ng-click="model.registerAsAdmin(username, password, password2)" class="btn btn-primary btn-block">
-        Register as Admin
-    </a>
+        <div ng-show="form.$submitted">
+            <div class="inputerror" ng-show="form.password2.$error.required">please Re-enter password</div>
+        </div>
+        <br/>
+        <input type="submit"
+               class="btn btn-primary btn-block"
+               ng-click="model.register(username, password, password2)"
+               value="Register" />
+        <input type="submit"
+               class="btn btn-primary btn-block"
+               ng-click="model.registerAsChef(username, password, password2)"
+               value="Register As Chef" />
+        <input type="submit"
+               class="btn btn-primary btn-block"
+               ng-click="model.registerAsAdmin(username, password, password2)"
+               value="Register As Admin" />
+
+        <!--<a ng-click="model.register(username, password, password2)"-->
+       <!--class="btn btn-primary btn-block">-->
+        <!--Register-->
+    <!--</a>-->
+    <!--<a ng-click="model.registerAsChef(username, password, password2)"-->
+       <!--class="btn btn-primary btn-block">-->
+        <!--Register as Chef-->
+    <!--</a>-->
+    <!--<a ng-click="model.registerAsAdmin(username, password, password2)"-->
+       <!--class="btn btn-primary btn-block">-->
+        <!--Register as Admin-->
+    <!--</a>-->
+    </form>
     <a class="btn btn-danger  btn-block"
        href="#!/login">Cancel</a>
 </div>
@@ -63,7 +99,7 @@
     <!--<div class="row" ng-show="model.error">-->
         <!--<div class="alert alert-danger alert-box" role="alert">-->
             <!--<b>Error! </b>-->
-            <!--{{model.error}}-->
+            <!--{{model.error}}--
         <!--</div>-->
     <!--</div>-->
 

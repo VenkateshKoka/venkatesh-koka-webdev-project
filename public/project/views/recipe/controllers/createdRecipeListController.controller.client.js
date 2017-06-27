@@ -19,6 +19,7 @@
 
            // model.renderCreatedRecipesByUser = renderCreatedRecipesByUser;
             model.editCreatedRecipe = editCreatedRecipe;
+            model.deleteCreatedRecipe = deleteCreatedRecipe;
 
 
             function init() {
@@ -31,6 +32,12 @@
             
             function editCreatedRecipe(recipeId) {
                 $location.url('/recipe/edit/'+recipeId);
+            }
+            function deleteCreatedRecipe(recipeId,username) {
+                recipeService.deleteCreatedRecipe(recipeId,username)
+                    .then(function (status) {
+                        init();
+                    })
             }
 
 

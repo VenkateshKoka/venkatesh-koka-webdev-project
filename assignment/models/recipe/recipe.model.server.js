@@ -55,7 +55,7 @@ function createNewRecipe(username,recipe) {
     recipe._createdUser = username;
     var imageurl = "https://lh3.googleusercontent.com/2teHUYh2fCPxCMhMJp_uU5tCbPJhxQSf0fEqX3Sv54tHmRHH9Z7nwvjub2krD-OcDXbHzuC1kTXscgvLqnzwQA=s360";
     recipe.imageURL = imageurl;
-    recipe.ingredientLines = recipe.ingredients;
+    recipe.preparation = recipe.preparation;
     return recipeModel.create(recipe);
     //     .then(function (recipe) {
     //         return recipe;// userModel.addRecipeToCreated(username,recipe._id);

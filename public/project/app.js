@@ -135,6 +135,14 @@
                     currentUser : checkAdmin
                 }
             })
+            .when('/admin/recipe/edit/:recipeId', {
+                templateUrl: 'views/admin/templates/admin-recipeEdit.view.client.html',
+                controller: 'adminRecipeEditController',
+                controllerAs: 'model',
+                resolve :{
+                    currentUser : checkAdmin
+                }
+            })
 
 
 

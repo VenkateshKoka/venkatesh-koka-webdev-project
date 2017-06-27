@@ -67,22 +67,56 @@
 <div class="content container-fluid">
     <div class="row">
         <div class="col-xs-12">
+            <form name="form" class="css-form" novalidate>
+                <label for="name">Name</label>
+                <input class="form-control"
+                       ng-model="recipe.name"
+                       placeholder="Recipe name"
+                       name="recipename"
+                       id="name"
+                        required=""/>
+                <div ng-show="form.$submitted">
+                    <div class="inputerror"
+                         ng-show="form.recipename.$error.required">Please enter recipe name.
+                    </div>
+                </div>
+                <br/>
+                <label for="preparation"> preparation </label>
+                <textarea class="form-control"
+                          placeholder="Preparation description"
+                          ng-model="recipe.preparation"
+                          name="recipepreparation"
+                          required=""
+                          id="preparation"></textarea>
 
-            <label for="name">Name</label>
-            <input class="form-control"
-                   ng-model="recipe.name"
-                   placeholder="Recipe name"
-                   id="name"/>
-            <label for="preparation"> Preparation Method</label>
-            <textarea class="form-control" ng-model="recipe.ingredients" id="preparation"></textarea>
-            <label for="totalTimeInSeconds">total Time in seconds</label>
-            <input id="totalTimeInSeconds"
-                   placeholder="recipe time"
-                   ng-model="recipe.totalTimeInSeconds"
-                   class="form-control">
-            <button ng-click="model.createNewRecipe(recipe)">
-                Add Recipe
-            </button>
+                <div ng-show="form.$submitted">
+                    <div class="inputerror"
+                         ng-show="form.recipepreparation.$error.required">Please enter preparation details
+                    </div>
+                </div>
+                <br/>
+                <label for="totalTimeInSeconds">total Time in seconds</label>
+                <input id="totalTimeInSeconds"
+                       placeholder="Enter only a number"
+                       ng-model="recipe.totalTimeInSeconds"
+                       name="recipetime"
+                       required=""
+                       class="form-control">
+
+                <div ng-show="form.$submitted">
+                    <div class="inputerror"
+                         ng-show="form.recipetime.$error.required">Please enter time to prepare
+                    </div>
+                </div>
+                <br/>
+                <input class="btn btn-block btn-primary"
+                       type="submit"
+                       ng-click="model.createNewRecipe(recipe)"
+                       value="Add Recipe" />
+                <!--<button ng-click="model.createNewRecipe(recipe)">-->
+                    <!--Add Recipe-->
+                <!--</button>-->
+            </form>
         </div>
 
     </div>

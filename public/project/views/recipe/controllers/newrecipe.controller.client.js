@@ -15,12 +15,14 @@
             model.createNewRecipe=createNewRecipe;
 
             function createNewRecipe(recipe) {
-                var username = currentUser.username;
-                recipeService.createNewRecipe(username,recipe)
-                    .then(function (response) {
-                    $location.url('/cook/recipe');
-                })
-            }
+                if(!(recipe.name ==='' || recipe.preparation==='')){
+                    var username = currentUser.username;
+                    recipeService.createNewRecipe(username,recipe)
+                        .then(function (response) {
+                            $location.url('/cook/recipe');
+                        })
+                }
+                }
 
 
         }

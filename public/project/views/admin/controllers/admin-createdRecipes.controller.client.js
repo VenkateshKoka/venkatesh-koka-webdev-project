@@ -7,7 +7,7 @@
         .module('pocApp')
         .controller('adminCreatedRecipesController', adminCreatedRecipesController);
 
-    function adminCreatedRecipesController(userService,recipeService,currentUser) {
+    function adminCreatedRecipesController($location,userService,recipeService,currentUser) {
 
         var model = this;
 
@@ -15,6 +15,8 @@
         
         //model.deleteRecipe = deleteRecipe;
         model.deleteCreatedRecipe = deleteCreatedRecipe;
+        model.updateRecipe = updateRecipe;
+        //model.editCreatedRecipe = editCreatedRecipe;
 
         function init() {
             findallCreatedRecipes();
@@ -33,6 +35,9 @@
                 .then(function (status) {
                     findallCreatedRecipes();
             })
+        }
+        function updateRecipe(recipeId) {
+            $location.url('/admin/recipe/edit/'+recipeId);
         }
 
     }

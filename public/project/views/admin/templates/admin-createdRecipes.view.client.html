@@ -28,6 +28,8 @@
 
 </div>
 
+
+
 <div class="content container-fluid">
     <h1>
         Created recipes
@@ -54,7 +56,7 @@
                         </li>
                         <li class="list-group-item">
                             <p>
-                                {{recipe.ingredients}}
+                               <strong>Preparation : </strong> {{recipe.preparation}}
                             </p>
                         </li>
                         <li class="list-group-item">
@@ -65,7 +67,24 @@
                     </ul>
                 </div>
                 <div  class="col-xs-2">
-                    <button ng-click="model.deleteCreatedRecipe(recipe._id,recipe._createdUser)" class="btn-danger">X</button>
+                    <ul class="list-group">
+                        <div class="row">
+                            <a ng-click="model.deleteCreatedRecipe(recipe._id,recipe._createdUser)" class="navbar-link">
+          <span class="glyphicon glyphicon-remove">
+          </span>
+                            </a>
+                            <!--<button ng-click="model.deleteCreatedRecipe(recipe._id,recipe._createdUser)"-->
+                            <!--class="btn-danger">X</button>-->
+                        </div>
+                        <div class="row" style="padding-top: 10px">
+                            <a ng-click="model.updateRecipe(recipe._id)" class="navbar-link">
+          <span class="glyphicon glyphicon-cog">
+          </span></a>
+                        </div>
+
+
+
+                    </ul>
                 </div>
             </div>
         </li>

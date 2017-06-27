@@ -25,23 +25,36 @@
     <h1>Login</h1>
     <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
 
+    <form name="form" class="css-form" novalidate>
     <label for="userName">Username</label>
     <input type="text"
            ng-model="username"
            class="form-control"
            id="userName"
+           required=""
+           name="username"
            placeholder="username"/>
-
+        <div ng-show="form.$submitted">
+            <div class="inputerror" ng-show="form.username.$error.required">Please enter username</div>
+        </div>
     <label for="password">Password</label>
     <input type="password"
            ng-model="password"
            class="form-control"
            id="password"
+           required=""
+           name="password"
            placeholder="password"/>
-    <a ng-click="model.login(username, password)"
-       class="btn btn-primary btn-block">
-        Login
-    </a>
+        <div ng-show="form.$submitted">
+            <div class="inputerror" ng-show="form.password.$error.required">Please enter password</div>
+        </div>
+        <br/>
+        <input type="submit" class="btn btn-primary btn-block" ng-click="model.login(username, password)" value="Login" />
+    <!--<a ng-click="model.login(username, password)"-->
+       <!--class="btn btn-primary btn-block">-->
+        <!--Login-->
+    <!--</a>-->
+    </form>
     <!--<a href="/auth/google" class="btn btn-danger btn-block">-->
         <!--<span class="fa fa-google-plus"></span>-->
         <!--Google-->
@@ -55,5 +68,6 @@
        href="#!/register">
         Register
     </a>
+
 
 </div>

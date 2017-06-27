@@ -23,6 +23,10 @@
   padding: 15px;
 }
 
+.inputerror{
+
+  color: red;
+}
 
 /*
  * Header
