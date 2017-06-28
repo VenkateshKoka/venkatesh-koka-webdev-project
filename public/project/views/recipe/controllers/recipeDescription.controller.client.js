@@ -7,13 +7,15 @@
         .controller('recipeController',recipeController);
 
 
-    function recipeController($routeParams,$location,recipeService,commentService,currentUser) { //recipeService,
+    function recipeController($routeParams,$location,recipeService,userService,commentService,currentUser) { //recipeService,
 
         var model = this;
         model.currentUserId = currentUser._id;
+        model.currentUser = currentUser;
         model.currentusername = currentUser.username;
         // console.log(model.currentusername);
         var recipeId = $routeParams['recipeId'];
+        model.recipeId = $routeParams['recipeId'];
         var username = currentUser.username;
 
         model.renderRecipe = renderRecipe;
@@ -22,6 +24,7 @@
         model.renderComments = renderComments;
         model.goBack = goBack;
         model.deleteComment = deleteComment;
+        model.isRecipeLiked = isRecipeLiked;
 
         //console.log(recipeId);
         // model.name ="koka";
@@ -29,6 +32,7 @@
         function init() {
             renderRecipe(recipeId);
             renderComments(recipeId);
+            isRecipeLiked(recipeId);
         }
 
         init();
@@ -37,6 +41,29 @@
             window.history.back();
         }
 
+        function isRecipeLiked(recipeId) {
+            recipeService
+                .searchRecipesForUser(currentUser._id)
+                .then(function (recipes) {
+                    if(recipes){
+                        for (i = 0; i < recipes.length; i++) {
+                            if($routeParams['recipeId'] === recipes[i].recipeId){
+                                model.isLiked = true;
+                                model.notLiked = true;
+                                return
+                            }
+
+                        }
+
+                    }
+                    else{
+                        model.isLiked = false;
+                    }
+
+                    // console.log("model recipe is "+recipe);
+                    // model.recipes = recipes;
+                })
+        }
         function renderRecipe (recipeId) {
             recipeService
                 .searchRecipeById(recipeId)
@@ -49,7 +76,7 @@
         }
 
         function addRecipeToFavorites(recipe,userId) {
-            console.log(recipe);
+            // console.log(recipe);
             recipeService
                 .addRecipeToFavorites(recipe,userId)
                 .then(function (response) {

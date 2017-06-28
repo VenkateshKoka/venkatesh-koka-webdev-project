@@ -24,7 +24,6 @@
 }
 
 .inputerror{
-
   color: red;
 }
 
@@ -170,3 +169,39 @@ Carousal
   background-size:cover;
   z-index:0;
 }
+
+
+/*.input__field--hoshi {*/
+  /*margin-top: 1em;*/
+  /*padding: 0.85em 0.15em;*/
+  /*width: 100%;*/
+  /*background: transparent;*/
+  /*color: #595F6E;*/
+/*}*/
+
+/*.input__field:focus {*/
+  /*outline: none;*/
+/*}*/
+
+/*.input__field--hoshi {*/
+  /*margin-top: 1em;*/
+  /*padding: 0.85em 0.15em;*/
+  /*width: 100%;*/
+  /*background: transparent;*/
+  /*color: #595F6E;*/
+/*}*/
+/*.input__field {*/
+  /*position: relative;*/
+  /*display: block;*/
+  /*float: right;*/
+  /*padding: 0.8em;*/
+  /*width: 60%;*/
+  /*border: none;*/
+  /*border-radius: 0;*/
+  /*background: #f0f0f0;*/
+  /*color: #aaa;*/
+  /*font-weight: bold;*/
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*-webkit-appearance: none;*/
+/*}*/
+

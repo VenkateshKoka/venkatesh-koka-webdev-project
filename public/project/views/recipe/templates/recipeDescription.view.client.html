@@ -35,13 +35,29 @@
         </li>
         {{model.message}}
         <li class="list-group-item">
+            <div ng-if=" model.currentUser._id">
             <button class="btn btn-block btn-success search-bar-height"
-                    ng-show = "model.currentUserId"
                     ng-click = "model.addRecipeToFavorites(model.recipe,model.currentUserId)">
                 Add to your favorites
             </button>
-        </li>
+            </div>
+            <!--<div ng-if=" model.currentUser._id">-->
+                <!--<button class="btn btn-block btn-danger search-bar-height"-->
+                        <!--ng-show="{{model.notLiked}}"-->
+                        <!--ng-click = "model.deleteRecipeFromFavorites(model.recipe,model.currentUserId)">-->
+                    <!--Remove from your favorites-->
+                <!--</button>-->
+            <!--</div>-->
 
+            <!--<div ng-if=" model.currentUser._id">-->
+                <!--<button class="btn btn-block btn-danger search-bar-height"-->
+                        <!--ng-if ="{{model.isLiked}}">-->
+                    <!--Recipe already in favorites-->
+                <!--</button>-->
+            <!--</div>-->
+
+        </li>
+        <!--ng-show = "model.currentUserId"-->
         <li class="list-group-item">
 
             <div class="row">
